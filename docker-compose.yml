@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.3'
 
 services:
   app:
@@ -14,4 +14,3 @@ services:
       - DEBUG=1
       - ENDPOINT_URL=http://localhost:8000
       - GOOGLE_RECAPTCHA_SECRET_KEY=6Ld9m3AbAAAAAP_eSeALEvzuMNlvCgKBlI0HxyiV
-      
