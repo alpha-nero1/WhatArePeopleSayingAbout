@@ -21,7 +21,7 @@ class TopicSitemap(Sitemap):
     protocol = 'https'
 
     def items(self):
-        return Topic.objects.all()
+        return Topic.objects.all().order_by('-created_at')
 
     def lastmod(self, obj):
         return obj.updated_at

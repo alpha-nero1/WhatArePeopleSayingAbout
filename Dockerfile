@@ -2,11 +2,15 @@
 FROM python:3.8-alpine
 ENV PATH="/scripts:${PATH}"
 COPY ./requirements.txt /requirements.txt
+
+# Install postgres client
+RUN apk add --update --no-cache postgresql-client
+
 # Install virtual dependencies for pip install.
-RUN apk add --update --no-cache --virtual .tmp gcc libc-dev linux-headers
+RUN apk add --update --no-cache --virtual .tmp gcc libc-dev linux-headers postgresql-dev
 RUN pip install -r /requirements.txt
-RUN apk add --update --no-cache postgresql-libs postgresql-dev
-# Remove virtual dependencies
+
+# Remove dependencies
 RUN apk del .tmp
 
 # Copy resources across into container.
