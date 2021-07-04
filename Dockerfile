@@ -10,7 +10,7 @@ RUN apk del .tmp
 
 # Copy resources across into container.
 RUN mkdir /app
-COPY ./* /app
+COPY ./WhatArePeopleSayingAbout /app
 WORKDIR /app
 COPY ./scripts /scripts
 

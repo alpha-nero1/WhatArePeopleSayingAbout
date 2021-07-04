@@ -47,6 +47,9 @@ contains the dev settings that override settings.py.
 
 - `settings.py` essentialy acts as out base settings which are prod.
 
+Run using normal docker file:  
 `docker-compose up --build`
+Run using the prod file:
+- `docker-compose -f docker-compose-deploy.yml up --build`
 
 deploy: https://www.youtube.com/watch?v=IoxHUrbiqUo

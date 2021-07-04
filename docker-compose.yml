@@ -8,7 +8,10 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./app:/app
+      - ./WhatArePeopleSayingAbout:/app
     command: sh -c "python manage.py runserver 0.0.0.0:8000"
     environment: 
-      - DEBUG=1 
+      - DEBUG=1
+      - ENDPOINT_URL=http://localhost:8000
+      - GOOGLE_RECAPTCHA_SECRET_KEY=6Ld9m3AbAAAAAP_eSeALEvzuMNlvCgKBlI0HxyiV
+      

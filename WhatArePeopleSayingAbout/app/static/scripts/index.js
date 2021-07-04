@@ -3,7 +3,7 @@
         var head = document.getElementsByTagName('head')[0];
     
         var script = document.createElement('script');
-        script.src = `/static/scripts${filename}`;
+        script.src = `/static/static/scripts${filename}`;
         script.type = 'text/javascript';
     
         head.appendChild(script)

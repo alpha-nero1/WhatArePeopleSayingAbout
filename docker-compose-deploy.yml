@@ -1,0 +1,27 @@
+version: '3.7'
+
+services: 
+    app:
+        build:
+            context: .
+        volumes:
+            - static_data:/vol/web
+        environment:
+            - SECRET_KEY=samplesecretkey123
+            - ALLOWED_HOSTS=127.0.0.1,localhost,whatarepeoplesayingabout.com,http://localhost:8080
+            - GOOGLE_RECAPTCHA_SECRET_KEY=6Ld9m3AbAAAAAP_eSeALEvzuMNlvCgKBlI0HxyiV
+            - ENDPOINT_URL=https://127.0.0.1:8080
+
+    proxy:
+        build:
+            context: ./proxy
+        volumes:
+            - static_data:/vol/static
+        ports:
+            - "8080:8080"
+        depends_on:
+            - app
+
+# Create the shared volume
+volumes:
+    static_data:

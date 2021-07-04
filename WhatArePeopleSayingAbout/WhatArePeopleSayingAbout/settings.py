@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
-import secrets
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,15 +21,18 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = secrets.SECRET_KEY
+SECRET_KEY = os.environ.get('SECRET_KEY', 'changeme')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = bool(int(os.environ.get('DEBUG', 0)))
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'whatarepeoplesayingabout.com']
+ALLOWED_HOSTS = []
+ALLOWED_HOSTS_ENV = os.environ.get('ALLOWED_HOSTS')
+if ALLOWED_HOSTS_ENV:
+    ALLOWED_HOSTS.extend(ALLOWED_HOSTS_ENV.split(','))
 
-GOOGLE_RECAPTCHA_SECRET_KEY = secrets.GOOGLE_RECAPTCHA_SECRET_KEY
-ENDPOINT_URL = 'https://whatarepeoplesayingabout.com/'
+GOOGLE_RECAPTCHA_SECRET_KEY = os.environ.get('GOOGLE_RECAPTCHA_SECRET_KEY')
+ENDPOINT_URL = os.environ.get('ENDPOINT_URL')
 
 # Application definition
 INSTALLED_APPS = [
@@ -133,9 +135,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+STATIC_URL = '/static/static/'
+MEDIA_URL = '/static/media/'
+
+# Map urls to the nginx proxy.
+STATIC_ROOT = '/vol/web/static'
+MEDIA_ROOT = '/vol/web/media'
 
 
 # Default primary key field type
@@ -161,8 +166,3 @@ CORS_ORIGIN_WHITELIST = (
   'http://localhost:8000',
   'https://whatarepeoplesayingabout.com'
 )
-
-
-# Override production variables if DJANGO_DEVELOPMENT env variable is set
-if os.environ.get('DJANGO_DEVELOPMENT'):
-    from settings_dev import *
