@@ -1,0 +1,23 @@
+from django.shortcuts import render
+from django.views import View
+from django.template import RequestContext
+
+
+def handler404(request, *args, **argv):
+    response = render(request, 'app/errors/notfound.html', {})
+    response.status_code = 404
+    return response
+
+
+class UnverifiedView(View):
+    template_name = 'app/errors/unverified.html'
+
+    def get(self, request):
+        return render(request, self.template_name)
+
+
+class NotFoundView(View):
+    template_name = 'app/errors/notfound.html'
+    
+    def get(self, request):
+        return render(request, self.template_name)

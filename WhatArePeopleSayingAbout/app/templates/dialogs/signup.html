@@ -1,0 +1,37 @@
+<form 
+    id="wapsa-signup-dialog" 
+    class="card wapsa-dialog"
+    method="POST"
+    action="/auth/signup/"
+>
+    {% csrf_token %}
+    <div class="wapsa-dialog-header">
+        <h3>Sign up.</h3>
+        <i id="wapsa-signup-dialog-close" class="fas fa-times wapsa-dialog-close-button"></i>
+    </div>
+    <input 
+        class="form-control username-field" 
+        placeholder="Username" 
+        name="username"
+    />
+    <input 
+        class="form-control email-field" 
+        placeholder="Email"
+        type="email"
+        name="email"
+    />
+    <input 
+        class="form-control" 
+        placeholder="Password"
+        name="password1"
+    />
+    <input 
+        class="form-control" 
+        placeholder="Confirm password"
+        name="password2"
+    />
+    <div class="g-recaptcha" data-sitekey="6LfAX1wbAAAAANoyhr9HFhBE1hNdjU6SW3G44dL2"></div>
+    <div class="flex-row-end">
+        <button class="btn btn-primary">Sign up</button>
+    </div>
+</form>

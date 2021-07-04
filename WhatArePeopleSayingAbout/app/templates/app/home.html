@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta. -->
+        <meta charset="utf-8" />
+        <meta name="keywords" content="What are poeple saying... Have your say!">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+        <!-- Stylesheets. -->
+        {% include '../common/configs/styles.html' %}
+        <title>Home | What are people saying about</title>
+    </head>
+    <body class="main-body">
+        <div id="wapsa-overlay"></div>
+        <div 
+            id="page-data"
+            data-username="{{ user.username }}"
+        ></div>
+        <div class="content-wrapper">
+            {% include '../common/navbar.html' %}
+            <div class="content">
+                <header>
+                    <h1 class="title">What are you saying about <span id="wapsa-title-span" class="underlined">_</span>?</h1>
+                </header>
+                {% include '../common/create-post.html' %}
+                <section class="topics">
+                    <h2 class="text-centered">Hot Topics!</h2>
+                    {% include '../common/topic-list.html' %}
+                </section>
+            </div>
+        </div>
+        {% include '../common/footer.html' %}
+
+        <!-- Scripts. -->
+        {% include '../common/configs/scripts.html' %}
+        <script src="{%  static  'scripts/home.js'  %}"></script>
+    </body>
+</html>

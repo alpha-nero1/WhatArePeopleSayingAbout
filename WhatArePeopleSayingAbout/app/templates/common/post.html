@@ -1,0 +1,36 @@
+<div 
+    id="post-{{forloop.counter0}}"
+    data-id={{post.id}}
+    data-postuuid="{{post.uuid}}"
+    data-index="{{forloop.counter0}}"
+    data-text="{{post.text}}"
+    data-is_liked="{{post.is_liked}}"
+    data-is_disliked="{{post.is_disliked}}"
+    data-username="{{post.user.username}}"
+    data-total_likes="{{post.total_likes}}"
+    data-topic_kebab_name="{{post.topic.kebab_name}}"
+    class="card post"
+>
+    <div class="flex-row space-between card-title">
+        <a href="/topics/{{post.topic.kebab_name}}/{{post.uuid}}"><h2>{{post.header}}</h2></a>
+        <h2 id="post-{{forloop.counter0}}-total-likes">0</h2>
+    </div>
+    <div class="flex-row space-between align-center">
+        <div>
+            {% if search_term %}
+                <a href="/topics/{{post.topic.kebab_name}}">({{post.topic.name}})</a>
+            {% endif %}
+        </div>
+        <div class="flex-row-small align-center">
+            {% if not search_term %}
+            <i id="post-{{forloop.counter0}}-like" class="far fa-thumbs-up link-btn"></i>
+            <i id="post-{{forloop.counter0}}-dislike" class="far fa-thumbs-down link-btn"></i>
+            {% endif %}
+            {% if post.user %}
+                <span class="right-aligned">- {{post.user.username}}</span>
+            {% else %}
+                <span class="right-aligned">- Anonymous</span>
+            {% endif %}
+        </div>
+    </div>
+</div>

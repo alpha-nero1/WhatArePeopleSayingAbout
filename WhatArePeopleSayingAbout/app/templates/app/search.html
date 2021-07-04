@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta. -->
+        <meta charset="utf-8" />
+        <meta name="keywords" content="What are poeple saying... Have your say!">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+        <!-- Stylesheets. -->
+        {% include '../common/configs/styles.html' %}
+        <title>Search | whatarepeoplesayingabout.com</title>
+    </head>
+    <body class="main-body">
+        <div id="wapsa-overlay"></div>
+        <div 
+            id="page-data"
+            data-username="{{ user.username }}"
+        ></div>
+        <div class="content-wrapper">
+            {% include '../common/navbar.html' %}
+            <div class="content flex-column-align-center">
+                <header>
+                    <h1 class="title">Search results for <span id="wapsa-title-span" class="underlined">{{search_term}}</span></h1>
+                </header>
+                <section id="topics-section">
+                    <h3 class="search-header">Topics</h3>
+                    {% if topics %}
+                        {% include '../common/topic-list.html' %}
+                        {% if topics_next %}
+                            <h4 class="muted m-b-2">Please note we only show the first {{topics_max}} results, try making your search more specific to find what you are looking for.</h4>
+                        {% endif %}
+                    {% else %}
+                        <p>No topics matched your search</p>
+                    {% endif %}
+                </section>
+                <section id="posts-section">
+                    <h3 class="search-header">Posts</h3>
+                    {% if posts %}
+                        {% include '../common/post-list.html' %}
+                        {% if posts_next %}
+                            <h4 class="muted">Please note that we only show the first {{posts_max}} results, try making your search more specific to find what you are looking for.</h4>
+                        {% endif %}
+                    {% else %}
+                        <p>No posts matched your search</p>
+                    {% endif %}
+                </section>
+            </div>
+        </div>
+        {% include '../common/footer.html' %}
+
+        <!-- Scripts. -->
+        {% include '../common/configs/scripts.html' %}
+    </body>
+</html>

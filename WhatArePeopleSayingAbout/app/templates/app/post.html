@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta. -->
+        <meta charset="utf-8" />
+        <meta name="keywords" content="{{ post.header }}">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+        <!-- Stylesheets. -->
+        {% include '../common/configs/styles.html' %}
+        <title>{{ post.header }} | whatarepeoplesayingabout.com</title>
+    </head>
+    <body>
+        <div
+            id="page-data"
+            data-id={{post.id}}
+            data-postuuid="{{post.uuid}}"
+            data-index="{{forloop.counter0}}"
+            data-text="{{post.text}}"
+            data-is_liked="{{post.is_liked}}"
+            data-is_disliked="{{post.is_disliked}}"
+            data-logged_in_username="{{request.user.username}}"
+            data-post_username="{{post.user.username}}"
+            data-total_likes="{{post.total_likes}}"
+            data-topic_kebab_name="{{post.topic.kebab_name}}"
+        ></div>
+        <div id="wapsa-overlay"></div>
+        <div class="content-wrapper">
+            {% include '../common/navbar.html' %}
+            <div id="breadcrumb">
+                <a href="./">&lt;{{post.topic.name}}</a>
+            </div>
+            <div class="content">
+                <header>
+                    <div class="header-title">
+                        <h2 class="title title-main">{{ post.header }}</h2>
+                        {% if post.header|length != post.text|length %}
+                            <h4 class="m-t-2">{{ post.text }}</h4>
+                        {% endif %}
+                    </div>
+                    {% if post.user.username %}
+                    <div class="flex-row end post-signature"><h3>- {{ post.user.username }}</h3></div>
+                    {% else %}
+                    <div class="flex-row end post-signature"><h3>- Anonymous</h3></div>
+                    {% endif %}
+                    <div class="flex-row-small">
+                        <div id="post-like-section">
+                            <div class="flex-row-small">
+                                <div class="flex-row-small align-center post-likes">
+                                    <i class="far fa-thumbs-up link-btn"></i>
+                                    <i class="far fa-thumbs-down link-btn"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <h1 id="post-likes" class="post-likes-total">{{post.total_likes}}</h1>
+                    </div>
+                </header>
+                <section id="post-comments">
+                    <div id="post-comments-list">
+                        <div id="comments-loader" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                    </div>
+                    <div id="post-comments-footer"></div>
+                    <div class="add-comment-container flex-column">
+                        <textarea id="add-comment-text-area" class="form-control" placeholder="Comment" name="text"></textarea>
+                        <button
+                            id="add-comment-button"
+                            class="btn btn-primary"
+                        >
+                            Add comment
+                        </button>
+                        {% if not user.username %}
+                            <h4 class="m-t-1 muted">You must be logged in to comment and like on whatarepeoplesayingabout.com</h4>
+                        {% endif %}
+                    </div>
+                </section>
+                {% if posts|length > 0 %}
+                <section class="topics">
+                    <h2 class="text-centered">Other trending</h2>
+                    {% include '../common/post-list.html' %}
+                </section>
+                {% endif %}
+            </div>
+        </div>
+        {% include '../common/footer.html' %}
+
+        <!-- Scripts. -->
+        {% include '../common/configs/scripts.html' %}
+        <script src="{%  static  'scripts/lists/post-list.js'  %}"></script>
+        <script src="{%  static  'scripts/posts/posts.js'  %}"></script>
+    </body>
+</html>

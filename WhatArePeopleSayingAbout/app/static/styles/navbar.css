@@ -1,0 +1,50 @@
+nav {
+    height: 4rem;
+    background-color: var(--primary);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+nav .search-input {
+    width: 20rem;
+    background-color: var(--primary);
+    color: white;
+}
+
+nav .search-input:focus {
+    color: white;
+    background-color: var(--primary);
+}
+
+nav .search-input::placeholder {
+    color: lightgray;
+}
+
+nav a {
+    color: white;
+}
+
+nav a:hover {
+    color: white;
+}
+
+.login-button {
+    margin-right: 0.5rem;
+}
+
+.wapsa-button {
+    background-color: var(--link);
+    color: white;
+}
+
+.wapsa-button:hover {
+    color: lightgray;
+}
+
+.search-btn {
+    margin: 0rem 0.2rem;
+}

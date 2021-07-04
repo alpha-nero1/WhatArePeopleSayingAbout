@@ -1,0 +1,10 @@
+<div class="flex-column-align-center">
+    <div id="post-list">
+        {% for post in posts %}
+            {% include '../common/post.html' %}
+        {% endfor %}
+    </div>
+    {% if next_page  %}
+        <button id="next-page-load-more" class="btn btn-primary">Load more</button>
+    {% endif %}
+</div>

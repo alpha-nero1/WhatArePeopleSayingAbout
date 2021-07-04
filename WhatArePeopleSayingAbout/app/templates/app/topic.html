@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta. -->
+        <meta charset="utf-8" />
+        <meta name="keywords" content="What are people saying about {{topic.name}}? Find out and have your say!">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+        <!-- Stylesheets. -->
+        {% include '../common/configs/styles.html' %}
+        <title>What are people saying about {{topic.name}}</title>
+    </head>
+    <body>
+        <div id="wapsa-overlay"></div>
+        <div 
+            id="page-data"
+            data-topic="{{ topic.kebab_name }}"
+            data-username="{{ user.username }}"
+        ></div>
+        <div class="content-wrapper">
+            {% include '../common/navbar.html' %}
+            <div class="content">
+                <header>
+                    <h1 class="title title-main">What are people saying about <span class="underlined">{{topic.name}}</span></h1>
+                </header>
+                {% include '../common/create-post.html' %}
+                
+                <section class="topics">
+                    <h2 class="text-centered">Trending</h2>
+                    {% include '../common/post-list.html' %}
+                </section>
+            </div>
+        </div>
+        {% include '../common/footer.html' %}
+
+        <!-- Scripts. -->
+        {% include '../common/configs/scripts.html' %}
+        <script src="{%  static  'scripts/lists/post-list.js'  %}"></script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+.link-btn:hover {
+    color: var(--link);
+    cursor: pointer;
+}
+
+.link-danger {
+    color: var(--danger);
+}
+
+.active {
+    color: var(--link);
+    cursor: pointer;
+}
+
+.fa-thumbs-down.active {
+    color: var(--danger);
+    cursor: pointer;
+}
+
+.disabled {
+    color: gray;
+    cursor: default;
+}
+
+.disabled:hover {
+    color: gray !important;
+    cursor: default !important;
+}

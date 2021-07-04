@@ -1,0 +1,28 @@
+<nav> 
+    <a href="/"><h4>whatarepeoplesayingabout.com</h4></a>
+    <form class="flex-row-small" action="/search/" method="POST">
+        {% csrf_token %}
+        <input
+            name="search_term"
+            class="form-control search-input" 
+            placeholder="Search..." 
+            aria-label="Search"
+            value="{{search_term}}"
+        >
+        <button id="search-button" type="submit" class="btn btn-primary search-btn"><i class="fas fa-search"></i></button>
+    </form>
+    <form class="login-section" method="POST" action="/auth/logout/">
+        {% csrf_token %}
+        {% if user.username %}
+            <div class="flex-row-small align-center">
+                <h3 class="light margin-right-1">
+                    {{ user.username }}
+                </h3>
+                <button id="wapsa-logout-button" class="wapsa-button login-button btn" type="submit">Logout</button>
+            </div>
+        {% else %}
+            <a id="wapsa-login-button" class="wapsa-button login-button btn" href="/login">Login</a>
+            <a id="wapsa-signup-button" class="wapsa-button signup-button btn" href="/signup">Sign up</a>
+        {% endif %}
+    </form>
+</nav>

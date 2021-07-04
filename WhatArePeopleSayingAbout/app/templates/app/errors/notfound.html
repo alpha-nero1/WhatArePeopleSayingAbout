@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta. -->
+        <meta charset="utf-8" />
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+        <!-- Stylesheets. -->
+        {% include '../../common/configs/styles.html' %}
+        <title>Not Found | What are people saying about</title>
+    </head>
+    <body class="main-body">
+        <div class="content-wrapper">
+            {% include '../../common/navbar.html' %}
+            <div class="content">
+                <header>
+                    <h1 class="title">Sorry, we could not find the droids you were looking for.</h1>
+                    <i class="fas fa-robot warning-icon m-t-4"></i>
+                </header>
+            </div>
+        </div>
+        {% include '../../common/footer.html' %}
+
+        <!-- Scripts. -->
+        {% include '../../common/configs/scripts.html' %}
+    </body>
+</html>

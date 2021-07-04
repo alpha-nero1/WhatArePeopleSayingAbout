@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Meta. -->
+        <meta charset="utf-8" />
+        <meta name="keywords" content="whatarepeoplesayingabout, what, people, saying, about">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+        <!-- Stylesheets. -->
+        {% include '../common/configs/styles.html' %}
+        <title>Sign up | whatarepeoplesayingabout.com</title>
+    </head>
+    <body class="main-body">
+        <div class="content-wrapper">
+            {% include '../common/navbar.html' %}
+            <div class="content">
+                <header>
+                    <h1 class="title">Sign up</h1>
+                </header>
+                <div class="central-form">
+                    <form
+                        class="card central-form-inner"
+                        method="POST"
+                        action="/signup/"
+                    >
+                        {% csrf_token %}
+                        <input 
+                            class="form-control username-field" 
+                            placeholder="Username" 
+                            name="username"
+                            type="text"
+                        />
+                        {% if errors.username.0 %}
+                            <div class="flex-row">
+                                <p class="error">{{errors.username.0.message}}</p>
+                            </div>
+                        {% endif %}
+                        <input 
+                            class="form-control email-field" 
+                            placeholder="Email"
+                            type="email"
+                            name="email"
+                        />
+                        {% if errors.email.0 %}
+                            <div class="flex-row">
+                                <p class="error">{{errors.email.0.message}}</p>
+                            </div>
+                        {% endif %}
+                        <input 
+                            class="form-control" 
+                            placeholder="Password"
+                            name="password1"
+                            type="password"
+                        />
+                        {% if errors.password1.0 %}
+                            <div class="flex-row">
+                                <p class="error">{{errors.password1.0.message}}</p>
+                            </div>
+                        {% endif %}
+                        <input 
+                            class="form-control" 
+                            placeholder="Confirm password"
+                            name="password2"
+                            type="password"
+                        />
+                        {% if errors.password2.0 %}
+                            <div class="flex-row">
+                                <p class="error">{{errors.password2.0.message}}</p>
+                            </div>
+                        {% endif %}
+                        {% if errors.password_mismatch %}
+                            <div class="flex-row">
+                                <p class="error">{{errors.password_mismatch}}</p>
+                            </div>
+                        {% endif %}
+                        <div class="flex-row end">
+                            <div class="g-recaptcha" data-sitekey="6Ld9m3AbAAAAACwB__7zLjTwce4Snjs2DBfTRLdt"></div>
+                        </div>
+                        <div class="flex-row-end">
+                            <button class="btn btn-primary">Sign up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% include '../common/footer.html' %}
+
+        <!-- Scripts. -->
+        {% include '../common/configs/scripts.html' %}
+        <script src="{%  static  'scripts/home.js'  %}"></script>
+    </body>
+</html>

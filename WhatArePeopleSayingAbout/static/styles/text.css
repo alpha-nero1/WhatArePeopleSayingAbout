@@ -1,0 +1,7 @@
+.error {
+    color: var(--danger);
+}
+
+.warning {
+    color: var(--warning);
+}
