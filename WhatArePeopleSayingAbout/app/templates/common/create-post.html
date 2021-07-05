@@ -16,10 +16,21 @@
                 name="text"
             ></textarea>
             <div class="flex-row end">
-                <div class="g-recaptcha" data-sitekey="6Ld9m3AbAAAAACwB__7zLjTwce4Snjs2DBfTRLdt"></div>
+                <div 
+                    class="g-recaptcha" 
+                    data-sitekey="6Ld9m3AbAAAAACwB__7zLjTwce4Snjs2DBfTRLdt"
+                    data-callback="recaptchaCallback"
+                ></div>
             </div>
             <div class="flex-row end">
-                <button class="btn btn-primary say-button" type="submit">Say</button>
+                <button
+                    id="captcha-blocked-button"
+                    class="btn btn-primary say-button" 
+                    type="submit"
+                    disabled="true"
+                >
+                    Say
+                </button>
             </div>
         </div>
     </div>

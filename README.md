@@ -53,3 +53,5 @@ Run using the prod file:
 - `docker-compose -f docker-compose-deploy.yml up --build`
 
 deploy: https://www.youtube.com/watch?v=IoxHUrbiqUo
+
+connecting to ec2 instance: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html

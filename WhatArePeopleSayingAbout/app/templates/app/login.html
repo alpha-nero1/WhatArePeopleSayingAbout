@@ -54,10 +54,21 @@
                             </div>
                         {% endif %}
                         <div class="flex-row end">
-                            <div class="g-recaptcha" data-sitekey="6Ld9m3AbAAAAACwB__7zLjTwce4Snjs2DBfTRLdt"></div>
+                            <div 
+                                class="g-recaptcha" 
+                                data-sitekey="6Ld9m3AbAAAAACwB__7zLjTwce4Snjs2DBfTRLdt"
+                                data-callback="recaptchaCallback"
+                            ></div>
                         </div>
                         <div class="flex-row-end">
-                            <button class="btn btn-primary" type="submit">Login</button>
+                            <button
+                                id="captcha-blocked-button"
+                                class="btn btn-primary" 
+                                type="submit"
+                                disabled="true"
+                            >
+                                Login
+                            </button>
                         </div>
                     </form>
                 </div>
