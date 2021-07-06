@@ -27,7 +27,7 @@ class TopicSitemap(Sitemap):
 
     def get_urls(self, site=None, **kwargs):
         site = sitemaps(domain='whatarepeoplesayingabout.com', name='whatarepeoplesayingabout.com')
-        return super(StaticSitemap, self).get_urls(site=site, **kwargs)
+        return super(TopicSitemap, self).get_urls(site=site, **kwargs)
 
     def items(self):
         return Topic.objects.all().order_by('-created_at')

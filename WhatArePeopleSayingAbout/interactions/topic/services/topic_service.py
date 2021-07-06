@@ -27,6 +27,7 @@ def get_trending_topics_queryset():
     topics = (
         Topic.objects
         .filter(disabled_at__isnull=True)
+        # Note: fix this!
         # .annotate(
         #     posts=Subquery(
         #         Post.objects.filter(
