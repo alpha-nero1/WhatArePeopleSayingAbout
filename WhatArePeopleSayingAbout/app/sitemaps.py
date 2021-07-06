@@ -1,7 +1,6 @@
-from django.contrib import sitemaps
 from app.models import Topic
 from django.contrib.sitemaps import Sitemap
-from django.urls import reverse
+from django.contrib.sites.models import Site
 
 
 class StaticSitemap(Sitemap):
@@ -10,7 +9,7 @@ class StaticSitemap(Sitemap):
     protocol = 'https'
 
     def get_urls(self, site=None, **kwargs):
-        site = sitemaps(domain='whatarepeoplesayingabout.com', name='whatarepeoplesayingabout.com')
+        site = Site(domain='whatarepeoplesayingabout.com', name='whatarepeoplesayingabout.com')
         return super(StaticSitemap, self).get_urls(site=site, **kwargs)
 
     def items(self):
@@ -26,7 +25,7 @@ class TopicSitemap(Sitemap):
     protocol = 'https'
 
     def get_urls(self, site=None, **kwargs):
-        site = sitemaps(domain='whatarepeoplesayingabout.com', name='whatarepeoplesayingabout.com')
+        site = Site(domain='whatarepeoplesayingabout.com', name='whatarepeoplesayingabout.com')
         return super(TopicSitemap, self).get_urls(site=site, **kwargs)
 
     def items(self):
