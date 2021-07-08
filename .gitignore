@@ -8,6 +8,7 @@ context.txt
 *.so
 secrets.py
 secrets.txt
+secrets.env
 
 # Distribution / packaging
 .Python

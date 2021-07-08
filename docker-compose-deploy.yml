@@ -6,16 +6,8 @@ services:
             context: .
         volumes:
             - static_data:/vol/web
-        environment:
-            - SECRET_KEY=samplesecretkey123
-            - ALLOWED_HOSTS=*
-            - GOOGLE_RECAPTCHA_SECRET_KEY=6Ld9m3AbAAAAAP_eSeALEvzuMNlvCgKBlI0HxyiV
-            - ENDPOINT_URL=whatarepeoplesayingabout.com
-            - PG_DB=postgres
-            - PG_USER=postgres
-            - PG_HOST=database-2.chfbgd0lcuju.ap-southeast-2.rds.amazonaws.com
-            - PG_PASS=QuK5Erby4MfVZau3gUso
-            - PG_PORT=5432
+        env_file:
+            secrets.env
 
     proxy:
         build:
