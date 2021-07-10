@@ -1,5 +1,3 @@
-{% load humanize %}
-
 <div class="card post">
     <div class="flex-row-start"><a href="/topics/{{topic.kebab_name}}"><h2>{{ topic.name }}</h2></a></div>
     <p>{{topic.total_posts}} Post{% if topic.total_posts != 1 %}s{% endif %} | First post {{topic.naturaltime}} ago</p>
