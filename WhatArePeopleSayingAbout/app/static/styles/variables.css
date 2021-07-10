@@ -1,6 +1,7 @@
 :root {
     --main-background: white;
     --main-colour: var(--rich-black);
+    --muted: gray;
     --primary: #14213d;
     --link: #007bff;
     --danger: var(--imperial-red);

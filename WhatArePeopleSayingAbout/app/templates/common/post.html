@@ -1,3 +1,4 @@
+{% load humanize %}
 <div 
     id="post-{{forloop.counter0}}"
     data-id={{post.id}}
@@ -9,17 +10,21 @@
     data-username="{{post.user.username}}"
     data-total_likes="{{post.total_likes}}"
     data-topic_kebab_name="{{post.topic.kebab_name}}"
+    data-naturaltime="{{post.naturaltime}}"
     class="card post"
 >
     <div class="flex-row space-between card-title">
         <a href="/topics/{{post.topic.kebab_name}}/{{post.uuid}}"><h2>{{post.header}}</h2></a>
-        <h2 id="post-{{forloop.counter0}}-total-likes">0</h2>
+        <h2 id="post-{{forloop.counter0}}-total-likes">{{post.total_likes}}</h2>
     </div>
     <div class="flex-row space-between align-center">
         <div>
-            {% if search_term %}
+            {% if search_term or account_page %}
                 <a href="/topics/{{post.topic.kebab_name}}">({{post.topic.name}})</a>
             {% endif %}
+            <div>
+                <span>{{post.naturaltime}} ago</span>
+            </div>
         </div>
         <div class="flex-row-small align-center">
             {% if not search_term %}
@@ -27,7 +32,7 @@
             <i id="post-{{forloop.counter0}}-dislike" class="far fa-thumbs-down link-btn"></i>
             {% endif %}
             {% if post.user %}
-                <span class="right-aligned">- {{post.user.username}}</span>
+                <span class="right-aligned">- <a href="/account/{{post.user.username}}">{{post.user.username}}</a></span>
             {% else %}
                 <span class="right-aligned">- Anonymous</span>
             {% endif %}

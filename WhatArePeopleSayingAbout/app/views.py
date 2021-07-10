@@ -145,3 +145,21 @@ class SearchView(View):
     def post(self, request):
         term = request.POST.get('search_term')
         return redirect('/search?term=' + term)
+
+
+class AccountView(View):
+    template_name = 'app/account.html'
+
+    def get(self, request, username):
+        user_posts = Post.objects.filter(user__username=username, disabled_at__isnull=True)
+        post_serializer = PostSerializer(instance=user_posts, context={'user':request.user}, many=True)
+        user = User.objects.get(username=username, disabled_at__isnull=True)
+        return render(
+            request, 
+            self.template_name, 
+            { 
+                'posts': post_serializer.data,
+                'user': user,
+                'account_page': True
+            }
+        )

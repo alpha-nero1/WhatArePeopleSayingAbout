@@ -13,6 +13,14 @@ html, body {
     text-align: center;
 }
 
+.page-description {
+    text-align: center;
+    padding: 0 2rem;
+    margin-top: 1rem;
+    color: var(--muted);
+    width: 60%;
+}
+
 header {
     margin-top: 6rem;
     display: flex;
@@ -148,8 +156,14 @@ footer a {
     color: var(--main-background);
 }
 
-.content-wrapper {
+.page-wrapper {
     min-height: 100%;
+}
+
+.content-wrapper {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
 }
 
 .content {
@@ -216,4 +230,13 @@ h3 {
 .warning-icon {
     font-size: 80px;
     color: var(--warning);
+}
+
+.post-util-bar {
+    margin-top: 2rem;
+    width: 30rem;
+}
+
+.post-util-bar i {
+    font-size: 2rem;
 }

@@ -3,6 +3,7 @@ from app.models import Post, Topic
 from app_auth.serializers import UserSerializer
 from app_auth.models import User
 from rest_framework import serializers
+from django.utils.timesince import timesince
 
 class PostTopicSerializer(serializers.ModelSerializer):
 
@@ -22,6 +23,7 @@ class PostSerializer(serializers.ModelSerializer):
     total_likes = serializers.SerializerMethodField()
     is_liked = serializers.SerializerMethodField()
     is_disliked = serializers.SerializerMethodField()
+    naturaltime = serializers.SerializerMethodField()
     header_size = CONSTANTS.get('POSTS').get('HEADER_SIZE')
 
     class Meta:
@@ -37,8 +39,13 @@ class PostSerializer(serializers.ModelSerializer):
             'is_liked',
             'is_disliked',
             'topic',
-            'header'
+            'header',
+            'naturaltime'
         ]
+
+    def get_naturaltime(self, obj):
+        time = timesince(obj.created_at)
+        return time
 
     def get_header(self, obj):
         header = obj.text

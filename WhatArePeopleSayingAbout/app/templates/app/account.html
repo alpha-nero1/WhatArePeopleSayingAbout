@@ -1,5 +1,4 @@
 {% load static %}
-{% load humanize %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +10,7 @@
 
         <!-- Stylesheets. -->
         {% include '../common/configs/styles.html' %}
-        <title>Home | What are people saying about</title>
+        <title>{{user.username}} | What are people saying about</title>
     </head>
     <body class="main-body">
         <div id="wapsa-overlay"></div>
@@ -21,18 +20,20 @@
         ></div>
         <div class="page-wrapper">
             {% include '../common/navbar.html' %}
-            <div class="content-wrapper">
-                <div class="content">
-                    <header>
-                        <h1 class="title">What are you saying about <span id="wapsa-title-span" class="underlined">_</span>?</h1>
-                        <h2 class="page-description">Say anything about any topic! Create a post and let the world know something new, or ask a question!</h2>
-                    </header>
-                    {% include '../common/create-post.html' %}
-                    <section class="topics">
-                        <h2 class="text-centered">Hot Topics!</h2>
-                        {% include '../common/topic-list.html' %}
-                    </section>
-                </div>
+            <div class="content">
+                <header>
+                    <h1 class="title">{{ user.username }}</h1>
+                </header>
+                <section class="posts">
+                    <h2 class="text-centered muted">All posts</h2>
+                    {% if posts|length > 0 %}
+                        {% include '../common/post-list.html' %}
+                    {% elif user.username != request.user.username %}
+                        <h3 class="text-centered muted m-t-2">User has not yet made a post.</h3>
+                    {% else %}
+                        <h3 class="text-centered muted m-t-2">You have not yet made any posts!</h3>
+                    {% endif %}
+                </section>
             </div>
         </div>
         {% include '../common/footer.html' %}
@@ -40,5 +41,6 @@
         <!-- Scripts. -->
         {% include '../common/configs/scripts.html' %}
         <script src="{%  static  'scripts/home.js'  %}"></script>
+        <script src="{%  static  'scripts/lists/post-list.js'  %}"></script>
     </body>
 </html>
