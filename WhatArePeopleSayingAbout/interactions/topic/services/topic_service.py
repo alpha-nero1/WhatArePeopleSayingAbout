@@ -28,17 +28,17 @@ def get_trending_topics_queryset():
         Topic.objects
         .filter(disabled_at__isnull=True)
         # Note: fix this!
-        .annotate(
-            posts=Subquery(
-                Post.objects.filter(
-                    topic__id=OuterRef('id'),
-                    created_at__gt=week_ago,
-                    disabled_at__isnull=True
-                ).values('id')
-            ),
-            num_posts=Count('posts')
-        )
-        .order_by('-num_posts', '-created_at')
+        #.annotate(
+        #    posts=Subquery(
+        #        Post.objects.filter(
+        #            topic__id=OuterRef('id'),
+        #            created_at__gt=week_ago,
+        #            disabled_at__isnull=True
+        #        ).values('id')
+        #    ),
+        #    num_posts=Count('posts')
+        #)
+        .order_by('-created_at')
     )
     return topics
 

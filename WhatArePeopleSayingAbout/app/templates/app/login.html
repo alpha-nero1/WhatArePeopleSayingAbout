@@ -14,66 +14,69 @@
     <body class="main-body">
         <div class="page-wrapper">
             {% include '../common/navbar.html' %}
-            <div class="content">
-                <header>
-                    <h1 class="title">Log in</h1>
-                    <h2 class="page-description">Welcome back, it's a pleasure to see you back in the fold!</h2>
-                </header>
-                <div class="central-form">
-                    <form 
-                        class="card central-form-inner"
-                        method="POST"
-                        action="/login/"
-                    >
-                        {% csrf_token %}
-                        <input 
-                            id="wapsa-username-input"
-                            class="form-control username-field" 
-                            placeholder="Username" 
-                            name="username"
-                        />
-                        {% if errors.username.0 %}
-                            <div class="flex-row">
-                                <p class="error">{{errors.username.0.message}}</p>
+            <div class="content-wrapper">
+                <div class="content">
+                    <header>
+                        <h1 class="title">Log in</h1>
+                        <h2 class="page-description">Welcome back, it's a pleasure to see you back in the fold!</h2>
+                    </header>
+                    <div class="central-form">
+                        <form 
+                            class="card central-form-inner"
+                            method="POST"
+                            action="/login/"
+                        >
+                            {% csrf_token %}
+                            <input 
+                                id="wapsa-username-input"
+                                class="form-control username-field" 
+                                placeholder="Username" 
+                                name="username"
+                            />
+                            {% if errors.username.0 %}
+                                <div class="flex-row">
+                                    <p class="error">{{errors.username.0.message}}</p>
+                                </div>
+                            {% endif %}
+                            <input
+                                id="wapsa-password-input"
+                                class="form-control" 
+                                placeholder="Password" 
+                                name="password"
+                                type="password"
+                            />
+                            {% if errors.password.0 %}
+                                <div class="flex-row">
+                                    <p class="error">{{errors.password.0.message}}</p>
+                                </div>
+                            {% endif %}
+                            {% if errors.authentication %}
+                                <div class="flex-row">
+                                    <p class="error">{{errors.authentication}}</p>
+                                </div>
+                            {% endif %}
+                            <div class="flex-row end">
+                                <div 
+                                    class="g-recaptcha" 
+                                    data-sitekey="6Ld9m3AbAAAAACwB__7zLjTwce4Snjs2DBfTRLdt"
+                                    data-callback="recaptchaCallback"
+                                ></div>
                             </div>
-                        {% endif %}
-                        <input
-                            id="wapsa-password-input"
-                            class="form-control" 
-                            placeholder="Password" 
-                            name="password"
-                            type="password"
-                        />
-                        {% if errors.password.0 %}
-                            <div class="flex-row">
-                                <p class="error">{{errors.password.0.message}}</p>
+                            <div class="flex-row-end">
+                                <button
+                                    id="captcha-blocked-button"
+                                    class="btn btn-primary" 
+                                    type="submit"
+                                    disabled="true"
+                                >
+                                    Login
+                                </button>
                             </div>
-                        {% endif %}
-                        {% if errors.authentication %}
-                            <div class="flex-row">
-                                <p class="error">{{errors.authentication}}</p>
-                            </div>
-                        {% endif %}
-                        <div class="flex-row end">
-                            <div 
-                                class="g-recaptcha" 
-                                data-sitekey="6Ld9m3AbAAAAACwB__7zLjTwce4Snjs2DBfTRLdt"
-                                data-callback="recaptchaCallback"
-                            ></div>
-                        </div>
-                        <div class="flex-row-end">
-                            <button
-                                id="captcha-blocked-button"
-                                class="btn btn-primary" 
-                                type="submit"
-                                disabled="true"
-                            >
-                                Login
-                            </button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
             </div>
+
         </div>
         {% include '../common/footer.html' %}
 
