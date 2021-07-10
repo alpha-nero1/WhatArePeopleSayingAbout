@@ -11,7 +11,6 @@
     
     const scripts = [
         '/utils.js',
-        '/dialogs.js',
         '/api.js',
         '/auth.js',
         '/cookies.js',

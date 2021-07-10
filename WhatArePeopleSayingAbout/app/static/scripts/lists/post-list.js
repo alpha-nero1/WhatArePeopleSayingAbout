@@ -4,7 +4,7 @@
         let nextPost = true;
         const data = document.getElementById('page-data');
         const postList = document.getElementById('post-list');
-        const username = data.dataset.logged_in_username;
+        const username = data.dataset.username;
         let i = 0;
         boxes = [];
         while (nextPost) {
@@ -22,6 +22,7 @@
                 is_liked: post.dataset.is_liked === "True" ? true : false,
                 is_disliked: post.dataset.is_disliked === "True" ? true : false,
                 total_likes: +post.dataset.total_likes,
+                naturaltime: post.dataset.naturaltime,
                 user: {
                     username: post.dataset.username
                 },

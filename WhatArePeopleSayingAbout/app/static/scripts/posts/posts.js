@@ -113,10 +113,30 @@
         section.parentElement.replaceChild(createElement(likeBox), section);
     }
 
+    const listenOnPostDelete = () => {
+        const btn = document.getElementById('post-delete-btn');
+        const post = document.getElementById('page-data');
+        if (!btn || !post) return;
+        btn.addEventListener('click', () => {
+            btn.disabled = true;
+            PostsService.deletePost(post.dataset.postuuid)
+            .then(res => {
+                // Post was deleted, go away.
+                window.location.href = `/topics/${post.dataset.topic_kebab_name}`;
+            })
+            .catch(err => {
+                btn.disabled = false;
+                throw err;
+            })
+        })
+
+    }
+
     const windowOnLoaded = () => {
         loadPostComments();
         listenAddCommentButton();
         addLikeSection();
+        listenOnPostDelete();
     }
     
     window.addEventListener('load', windowOnLoaded, false);

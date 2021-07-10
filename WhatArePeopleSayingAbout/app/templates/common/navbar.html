@@ -15,9 +15,11 @@
         {% csrf_token %}
         {% if user.username %}
             <div class="flex-row-small align-center">
-                <h3 class="light margin-right-1">
-                    {{ user.username }}
-                </h3>
+                <a href="/account/{{user.username}}">
+                    <h3 class="light margin-right-1">
+                        {{ user.username }}
+                    </h3>
+                </a>
                 <button id="wapsa-logout-button" class="wapsa-button login-button btn" type="submit">Logout</button>
             </div>
         {% else %}

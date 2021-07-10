@@ -1,7 +1,8 @@
 Box.post = (post, data) => {
     const { username } = data;
-    const ownsPost = post?.user?.username === username && !!username;
+    const ownsPost = username && post?.user?.username === username;
     const postUsername = post?.user?.username ? post.user.username : 'Anonymous';
+    const notAnon = postUsername !== 'Anonymous';
     let likesTitle;
 
     const initialOffset = (() => {
@@ -38,27 +39,39 @@ Box.post = (post, data) => {
             ),
             x('h2', { oninit: (el) => likesTitle = el }, getLikeStr())
         ),
-        x('div', { className: 'flex-row-end align-center' },
-            (
-                ownsPost ? 
-                x('button', { className: 'btn link-danger', onclick: deletePost }, 'Delete') 
-                :
-                null
+        x('div', { className: 'flex-row space-between align-center' },
+            x('div', {},
+                x('span', {}, `${post.naturaltime} ago`)
             ),
-            Box.like(
-                post,
-                {
-                    pk: 'uuid',
-                    likeCallback: PostsService.like,
-                    dislikeCallback: PostsService.dislike,
-                    unlikeCallback: PostsService.unlike,
-                    undislikeCallback: PostsService.undislike,
-                    likeTextChangedCallback: (text) => {
-                        likesTitle.innerText = text;
+            x('div', { className: 'flex-row-small align-center'},
+                (
+                    ownsPost ? 
+                    x('button', { className: 'btn link-danger', onclick: deletePost }, 'Delete') 
+                    :
+                    null
+                ),
+                Box.like(
+                    post,
+                    {
+                        pk: 'uuid',
+                        likeCallback: PostsService.like,
+                        dislikeCallback: PostsService.dislike,
+                        unlikeCallback: PostsService.unlike,
+                        undislikeCallback: PostsService.undislike,
+                        likeTextChangedCallback: (text) => {
+                            likesTitle.innerText = text;
+                        }
                     }
-                }
-            ),
-            x('span', {}, `- ${postUsername}`)
+                ),
+                (
+                    notAnon ?
+                    x('span', {},
+                        '- ',
+                        x('a', { href: `/account/${postUsername}`}, postUsername)
+                    ) :
+                    x('span', {}, `- ${postUsername}`)
+                )
+            )
         )
     )
 }

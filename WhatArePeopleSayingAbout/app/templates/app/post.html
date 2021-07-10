@@ -14,6 +14,7 @@
     <body>
         <div
             id="page-data"
+            data-username="{{ request.user.username }}"
             data-id={{post.id}}
             data-postuuid="{{post.uuid}}"
             data-index="{{forloop.counter0}}"
@@ -26,60 +27,70 @@
             data-topic_kebab_name="{{post.topic.kebab_name}}"
         ></div>
         <div id="wapsa-overlay"></div>
-        <div class="content-wrapper">
+        <div class="page-wrapper">
             {% include '../common/navbar.html' %}
             <div id="breadcrumb">
                 <a href="./">&lt;{{post.topic.name}}</a>
             </div>
-            <div class="content">
-                <header>
-                    <div class="header-title">
-                        <h2 class="title title-main">{{ post.header }}</h2>
-                        {% if post.header|length != post.text|length %}
-                            <h4 class="m-t-2">{{ post.text }}</h4>
+            <div class="content-wrapper">
+                <div class="content">
+                    <header>
+                        <div class="header-title">
+                            <h2 class="title title-main">{{ post.header }}</h2>
+                            {% if post.header|length != post.text|length %}
+                                <h4 class="m-t-2">{{ post.text }}</h4>
+                            {% endif %}
+                        </div>
+                        {% if post.user.username %}
+                        <div class="flex-row end post-signature"><h3>- {{ post.user.username }}</h3></div>
+                        {% else %}
+                        <div class="flex-row end post-signature"><h3>- Anonymous</h3></div>
                         {% endif %}
-                    </div>
-                    {% if post.user.username %}
-                    <div class="flex-row end post-signature"><h3>- {{ post.user.username }}</h3></div>
-                    {% else %}
-                    <div class="flex-row end post-signature"><h3>- Anonymous</h3></div>
-                    {% endif %}
-                    <div class="flex-row-small">
-                        <div id="post-like-section">
-                            <div class="flex-row-small">
-                                <div class="flex-row-small align-center post-likes">
-                                    <i class="far fa-thumbs-up link-btn"></i>
-                                    <i class="far fa-thumbs-down link-btn"></i>
+                        <div class="post-util-bar flex-row space-between">
+                            <div>
+                                {% if request.user.username == post.user.username %}
+                                    <button id="post-delete-btn" class="btn link-danger" type="submit">
+                                        <i class="far fa-trash-alt"></i>
+                                    </button>
+                                {% endif %}
+                            </div>
+                            <div id="post-like-section">
+                                <div class="flex-row-small">
+                                    <div class="flex-row-small align-center post-likes">
+                                        <i class="far fa-thumbs-up link-btn"></i>
+                                        <i class="far fa-thumbs-down link-btn"></i>
+                                    </div>
                                 </div>
                             </div>
+                            <h1 id="post-likes" class="post-likes-total">{{post.total_likes}}</h1>
                         </div>
-                        <h1 id="post-likes" class="post-likes-total">{{post.total_likes}}</h1>
-                    </div>
-                </header>
-                <section id="post-comments">
-                    <div id="post-comments-list">
-                        <div id="comments-loader" class="lds-ring"><div></div><div></div><div></div><div></div></div>
-                    </div>
-                    <div id="post-comments-footer"></div>
-                    <div class="add-comment-container flex-column">
-                        <textarea id="add-comment-text-area" class="form-control" placeholder="Comment" name="text"></textarea>
-                        <button
-                            id="add-comment-button"
-                            class="btn btn-primary"
-                        >
-                            Add comment
-                        </button>
-                        {% if not user.username %}
-                            <h4 class="m-t-1 muted">You must be logged in to comment and like on whatarepeoplesayingabout.com</h4>
-                        {% endif %}
-                    </div>
-                </section>
-                {% if posts|length > 0 %}
-                <section class="topics">
-                    <h2 class="text-centered">Other trending</h2>
-                    {% include '../common/post-list.html' %}
-                </section>
-                {% endif %}
+                    </header>
+                    <section id="post-comments">
+                        <div id="post-comments-list">
+                            <div id="comments-loader" class="lds-ring"><div></div><div></div><div></div><div></div></div>
+                        </div>
+                        <div id="post-comments-footer"></div>
+                        <div class="add-comment-container flex-column">
+                            <textarea id="add-comment-text-area" class="form-control" placeholder="Comment" name="text"></textarea>
+                            <button
+                                id="add-comment-button"
+                                class="btn btn-primary"
+                            >
+                                Add comment
+                            </button>
+                            {% if not user.username %}
+                                <h4 class="m-t-1 muted">You must be logged in to comment and like on whatarepeoplesayingabout.com</h4>
+                                <h4 class="m-t-1 muted"><a href="/signup">Sign up</a>, its easy!</h4>
+                            {% endif %}
+                        </div>
+                    </section>
+                    {% if posts|length > 0 %}
+                    <section class="topics">
+                        <h2 class="text-centered">Other trending</h2>
+                        {% include '../common/post-list.html' %}
+                    </section>
+                    {% endif %}
+                </div>
             </div>
         </div>
         {% include '../common/footer.html' %}

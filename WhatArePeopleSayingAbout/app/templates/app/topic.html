@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -16,9 +17,9 @@
         <div 
             id="page-data"
             data-topic="{{ topic.kebab_name }}"
-            data-username="{{ user.username }}"
+            data-username="{{ request.user.username }}"
         ></div>
-        <div class="content-wrapper">
+        <div class="page-wrapper">
             {% include '../common/navbar.html' %}
             <div class="content">
                 <header>
