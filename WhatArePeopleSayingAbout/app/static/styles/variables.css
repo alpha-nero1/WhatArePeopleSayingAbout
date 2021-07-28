@@ -2,6 +2,7 @@
     --main-background: white;
     --main-colour: var(--rich-black);
     --muted: gray;
+    --light-muted: lightgray;
     --primary: #14213d;
     --link: #007bff;
     --danger: var(--imperial-red);

@@ -5,3 +5,15 @@
 .warning {
     color: var(--warning);
 }
+
+.light {
+    color: white;
+}
+
+.light-muted {
+    color: var(--light-muted);
+}
+
+.dark {
+    color: var(--rich-black)
+}

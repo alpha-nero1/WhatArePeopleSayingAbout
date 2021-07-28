@@ -18,11 +18,11 @@
             id="page-data"
             data-username="{{ request.user.username }}"
         ></div>
-        <div class="page-wrapper">
+        <div class="page-wrapper account-page">
             {% include '../common/navbar.html' %}
             <div class="content">
-                <header>
-                    <h1 class="title">{{ user.username }}</h1>
+                <header class="account-page-banner">
+                    <h1 class="title light">{{ user.username }}</h1>
                 </header>
                 <section class="posts">
                     <h2 class="text-centered muted">All posts</h2>
