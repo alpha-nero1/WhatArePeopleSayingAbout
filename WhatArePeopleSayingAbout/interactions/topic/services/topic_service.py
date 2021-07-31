@@ -1,6 +1,6 @@
 from django.db.models.aggregates import Sum
 from app.common.constants import CONSTANTS
-from django.db.models.expressions import OuterRef
+from django.db.models.expressions import Exists, OuterRef
 from app.models import Post, Topic
 from django.db.models import Count, Subquery
 from django.utils import timezone
@@ -24,21 +24,19 @@ def get_or_set_topic(topic_name):
 # the past 7 days!
 def get_trending_topics_queryset():
     week_ago = (timezone.now() - timedelta(days=CONSTANTS.get('TOPICS').get('TRENDING_OFFSET_DAYS')))
+    posts = Post.objects.filter(
+                   topic__id=OuterRef('id'),
+                   created_at__gt=week_ago,
+                   disabled_at__isnull=True
+               ).values('id')
     topics = (
         Topic.objects
         .filter(disabled_at__isnull=True)
-        # Note: fix this!
-        #.annotate(
-        #    posts=Subquery(
-        #        Post.objects.filter(
-        #            topic__id=OuterRef('id'),
-        #            created_at__gt=week_ago,
-        #            disabled_at__isnull=True
-        #        ).values('id')
-        #    ),
-        #    num_posts=Count('posts')
-        #)
-        .order_by('-created_at')
+        .annotate(
+            posts=Exists(posts),
+            num_posts=Count('post')
+        )
+        .order_by('-num_posts', 'created_at')
     )
     return topics
 

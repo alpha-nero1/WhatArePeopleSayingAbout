@@ -1,6 +1,17 @@
 version: '3.3'
 
 services:
+  db:
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  
   app:
     build:
       # Use our Dockerfile.
@@ -9,8 +20,12 @@ services:
       - "8000:8000"
     volumes:
       - ./WhatArePeopleSayingAbout:/app
-    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    command: python manage.py runserver 0.0.0.0:8000
     environment: 
       - DEBUG=1
       - ENDPOINT_URL=http://localhost:8000
       - GOOGLE_RECAPTCHA_SECRET_KEY=6Ld9m3AbAAAAAP_eSeALEvzuMNlvCgKBlI0HxyiV
+    depends_on:
+      - db
+  
+  

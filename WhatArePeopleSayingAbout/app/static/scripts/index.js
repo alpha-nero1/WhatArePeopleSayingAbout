@@ -15,7 +15,7 @@
         '/auth.js',
         '/cookies.js',
         '/hyperbox.js',
-        '/verify.js',
+        '/recaptcha-utils.js',
         '/boxes/index.js',
         '/services/comments.service.js',
         '/services/posts.service.js',

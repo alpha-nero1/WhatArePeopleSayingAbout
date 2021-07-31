@@ -1,5 +1,6 @@
 # Application constants.
 CONSTANTS = {
+    'VERSION': '1.0.4',
     'POSTS': {
         'PAGE_SIZE': 100,
         'MAX_SEARCH_SIZE': 100,

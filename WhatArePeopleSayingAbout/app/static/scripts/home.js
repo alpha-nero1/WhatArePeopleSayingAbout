@@ -60,7 +60,6 @@ const POST_INPUT_ID = 'wapsa-post-input';
     const windowOnLoaded = () => {
         listenLoadMoreTopicsButton();
         listenTopicChange();
-    }
-    
+    }    
     window.addEventListener('load', windowOnLoaded, false);
 })();

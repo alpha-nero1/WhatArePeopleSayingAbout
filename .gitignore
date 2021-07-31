@@ -9,6 +9,8 @@ context.txt
 secrets.py
 secrets.txt
 secrets.env
+postgres-data/
+data/
 
 # Distribution / packaging
 .Python

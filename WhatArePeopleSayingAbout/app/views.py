@@ -15,7 +15,7 @@ from .models import User, Topic, Post
 def handle_view_post(request):
     topic_name = request.POST.get('topic')
     recaptcha = request.POST.get('g-recaptcha-response')
-    valid = validate_recaptcha(recaptcha)
+    valid = request.user.is_authenticated or validate_recaptcha(recaptcha)
     if (valid):
         topic = get_or_set_topic(topic_name)
         user = request.user if request.user.username else None

@@ -43,7 +43,7 @@ have the following:
 
 # Deployment
 The `settings.py` file contains the main production settings while `settings_dev.py`
-contains the dev settings that override settings.py.
+contains the dev settings that override settings.py. 
 
 - `settings.py` essentialy acts as out base settings which are prod.
 
@@ -55,3 +55,6 @@ Run using the prod file:
 deploy: https://www.youtube.com/watch?v=IoxHUrbiqUo
 
 connecting to ec2 instance: https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html
+
+- `docker container exec -it 08aa40084067 python manage.py migrate`
+- `docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' whatpeoplearesayingabout_db_1`

@@ -16,18 +16,21 @@
                 name="text"
             ></textarea>
             <div class="flex-row end">
-                <div 
-                    class="g-recaptcha" 
-                    data-sitekey="6Ld9m3AbAAAAACwB__7zLjTwce4Snjs2DBfTRLdt"
-                    data-callback="recaptchaCallback"
-                ></div>
+                <!-- Only show recaptcha if not authed. -->
+                {% if not request.user.is_authenticated %}
+                    <div
+                        class="g-recaptcha" 
+                        data-sitekey="6Ld9m3AbAAAAACwB__7zLjTwce4Snjs2DBfTRLdt"
+                        data-callback="recaptchaCallback"
+                    ></div>
+                {% endif %}
             </div>
             <div class="flex-row end">
                 <button
                     id="captcha-blocked-button"
                     class="btn btn-primary say-button" 
                     type="submit"
-                    disabled="true"
+                    {% if request.user.is_authenticated %}{%else%}disabled{%endif%}
                 >
                     Say
                 </button>
