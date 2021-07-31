@@ -22,4 +22,8 @@ class NotFoundView(View):
     def get(self, request):
         rand = random.randint(1, 4)
         notfound_page_class = 'notfound-page-' + str(rand)
-        return render(request, self.template_name, { 'notfound_page_class': notfound_page_class })
+        return render(
+            request, 
+            self.template_name, 
+            { 'notfound_page_class': notfound_page_class }
+        )

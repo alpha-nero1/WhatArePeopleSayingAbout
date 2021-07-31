@@ -50,7 +50,7 @@ contains the dev settings that override settings.py.
 Run using normal docker file:  
 `docker-compose up --build`
 Run using the prod file:
-- `docker-compose -f docker-compose-deploy.yml up --build -d`
+- `sudo docker-compose -f docker-compose-deploy.yml up --build -d`
 
 deploy: https://www.youtube.com/watch?v=IoxHUrbiqUo
 
