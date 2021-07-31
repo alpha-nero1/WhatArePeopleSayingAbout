@@ -11,13 +11,18 @@
         <title>Not Found | What are people saying about</title>
     </head>
     <body class="main-body">
-        <div class="page-wrapper notfound-page">
+        <div
+            class="page-wrapper {{notfound_page_class}} notfound-page"
+        >
             {% include '../../common/navbar.html' %}
             <div class="content">
                 <header>
-                    <h1 class="title light">Page not found</h1>
-                    <h2 class="page-description light-muted">Sorry, we could not find the droids you were looking for.</h2>
+                    <h1 class="title light dark-label">Page not found</h1>
+                    <h2 class="page-description light dark-label unset-width">Sorry, we could not find the droids you were looking for</h2>
                 </header>
+                <div class="flex-row justify-center">
+                    <img class="astronaut" src="{%  static  'assets/Astronaut-01.svg'  %}">
+                </div>
             </div>
         </div>
         {% include '../../common/footer.html' %}

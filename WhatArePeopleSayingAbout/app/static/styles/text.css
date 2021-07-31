@@ -17,3 +17,13 @@
 .dark {
     color: var(--rich-black)
 }
+
+.dark-label {
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.light-label {
+    padding: 0.5rem 1rem;
+    background-color: white;
+}

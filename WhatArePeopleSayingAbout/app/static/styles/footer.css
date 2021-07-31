@@ -1,0 +1,28 @@
+
+footer {
+    background-color: var(--primary);
+    height: 3rem;
+    margin-top: -3rem;
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-centered-element {
+    position: absolute;
+    left: calc(50% - 10rem);
+    width: 20rem;
+    right: 50%;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 0;
+    color: var(--main-background);
+}
+
+footer a {
+    color: var(--main-background);
+}

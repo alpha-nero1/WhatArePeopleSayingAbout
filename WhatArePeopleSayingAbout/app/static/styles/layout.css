@@ -33,3 +33,7 @@
 .p-t-4 {
     padding-top: 4rem;
 }
+
+.unset-width {
+    width: unset !important;
+}
