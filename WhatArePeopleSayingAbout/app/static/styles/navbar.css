@@ -48,3 +48,7 @@ nav a:hover {
 .search-btn {
     margin: 0rem 0.2rem;
 }
+
+.search-form .form-control {
+    margin: unset !important;
+}

@@ -15,10 +15,91 @@
     100% {opacity:1;}
 }
 
+
+@keyframes slide-in {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% { 
+        transform: translateY(0%); 
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    transform: translateY(-100%);
+    animation: slide-in forwards 1s;
+}
+
+.slide-in-d-1 {
+    opacity: 0;
+    transform: translateY(-100%);
+    animation: slide-in forwards 1s;
+    animation-delay: 1s;
+}
+
 .fade-in {
     animation: fade-in linear 1s;
+}
+
+.fade-in-repeat {
+    animation: fade-in infinite 4s;
 }
 
 .float {
     animation: float 8s ease-in-out infinite;
 }
+
+.flip2 { animation: flip2 6s cubic-bezier(0.23, 1, 0.32, 1.2) infinite; }
+.flip3 { animation: flip3 8s cubic-bezier(0.23, 1, 0.32, 1.2) infinite; }
+.flip4 {
+    padding-top: 136px;
+    animation: flip4 10s cubic-bezier(0.23, 1, 0.32, 1.2) infinite; 
+}
+
+@keyframes flip2 {
+    0% { margin-top: -180px; }
+    5% { margin-top: -90px;  }
+    50% { margin-top: -90px; }
+    55% { margin-top: 0px; }
+    99.99% { margin-top: 0px; }
+    100% { margin-top: -270px; }
+}
+
+@keyframes flip3 {
+    0% { margin-top: -270px; }
+    5% { margin-top: -180px; }
+    33% { margin-top: -180px; }
+    38% { margin-top: -90px; }
+    66% { margin-top: -90px; }
+    71% { margin-top: 0px; }
+    99.99% { margin-top: 0px; }
+    100% { margin-top: -270px; }
+}
+
+@keyframes flip4 {
+    0% { margin-top: -340px; }
+    5% { margin-top: -272px; }
+    25% { margin-top: -272px; }
+    30% { margin-top: -136px; }
+    50% { margin-top: -136px; }
+    55% { margin-top: -68px; }
+    75% { margin-top: -68px; }
+    80% { margin-top: 0px; }
+    99.99% { margin-top: 0px; }
+    100% { margin-top: -340px; }
+}
+
+/* @keyframes flip4 {
+    0% { margin-top: -408px; }
+    5% { margin-top: -340px; }
+    25% { margin-top: -340px; }
+    30% { margin-top: -272px; }
+    50% { margin-top: -272px; }
+    55% { margin-top: -136px; }
+    75% { margin-top: -136px; }
+    80% { margin-top: 0px; }
+    99.99% { margin-top: 0px; }
+    100% { margin-top: -340px; }
+} */
