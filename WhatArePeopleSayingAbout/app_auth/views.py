@@ -12,6 +12,7 @@ from .forms import UserCreationForm
 from .serializers import UserSerializer
 from .user_backend import UserBackend
 from .common.token_utils import get_or_set_token
+from app.common.meta_config import get_meta
 
 
 class Auth(View):
@@ -91,7 +92,11 @@ class LoginView(Auth):
     template_name = 'app/login.html'
 
     def get(self, request):
-        return render(request, self.template_name, {})
+        return render(
+            request, 
+            self.template_name, 
+            { 'meta': get_meta('LoginView') }
+        )
 
     def post(self, request):
         username = request.POST.get('username', '')
@@ -110,7 +115,8 @@ class LoginView(Auth):
             {
                 'errors': {
                     'authentication': 'Username or password is incorrect.'
-                }
+                },
+                'meta': get_meta('LoginView')
             }
         )
 
@@ -120,7 +126,7 @@ class SignupView(Auth):
     form_class = UserCreationForm
 
     def get(self, request):
-        return render(request, self.template_name)
+        return render(request, self.template_name, { 'meta': get_meta('SignupView') })
 
     def post(self, request):
         form = self.form_class(request.POST)
@@ -149,7 +155,8 @@ class SignupView(Auth):
                     {
                         'errors': {
                             'authentication': 'Username or password is incorrect.'
-                        }
+                        },
+                        'meta': get_meta('SignupView')
                     }
                 )
 
@@ -157,6 +164,7 @@ class SignupView(Auth):
             request, 
             self.template_name,
             {
-                'errors': form.errors.get_json_data()
+                'errors': form.errors.get_json_data(),
+                'meta': get_meta('SignupView')
             }
         )

@@ -1,3 +1,4 @@
+from app.common.meta_config import get_meta, get_post_meta, get_topic_meta
 from app_auth.recaptcha.services.recaptcha_service import validate_recaptcha
 from django.conf import settings
 from interactions.topic.serializers import TopicSerializer
@@ -45,7 +46,8 @@ class HomeView(View):
             {
                 'topics': serializer.data,
                 'user': request.user,
-                'next_page': self.next_page
+                'next_page': self.next_page,
+                'meta': get_meta('HomeView')
             }
         )
 
@@ -84,7 +86,8 @@ class TopicView(View):
                 'topic': topic,
                 'posts': serializer.data,
                 'user': request.user,
-                'next_page': self.next_page
+                'next_page': self.next_page,
+                'meta': get_topic_meta(topic)
             }
         )
 
@@ -107,7 +110,8 @@ class PostView(View):
                 'post': main_post_serializer.data,
                 'posts': related_posts_serializer.data,
                 'topic': post.topic,
-                'user': request.user
+                'user': request.user,
+                'meta': get_post_meta(post)
             }
         )
 
